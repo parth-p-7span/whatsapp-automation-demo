@@ -45,7 +45,7 @@ def index():
         print("BODY => ", body)
         if 'object' in body and body['object'] == 'whatsapp_business_account':
 
-            message_value = body['entry']['changes'][0]['value']
+            message_value = body['entry'][0]['changes'][0]['value']
             message_product = message_value['messaging_product']
             if message_product == 'whatsapp':
                 message_author = message_value['contacts'][0]
