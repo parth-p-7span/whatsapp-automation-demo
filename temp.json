@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "104861202286839",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550054716",
+              "phone_number_id": "106519662119427"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Parth Panchal"
+                },
+                "wa_id": "918780495804"
+              }
+            ],
+            "messages": [
+              {
+                "from": "918780495804",
+                "id": "wamid.HBgMOTE4NzgwNDk1ODA0FQIAEhggQkU2OURGQUYyMzdCNDlBRkQ1QUI4RERBNDdENDBBOEIA",
+                "timestamp": "1656913849",
+                "text": {
+                  "body": "Gdydus"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}
