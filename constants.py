@@ -6,56 +6,64 @@ header = {
 }
 
 interactive_msg_body = {
-  "type": "button",
-  "body": {
-    "text": "you can select the data multiple times but only one data can be select at a single time."
-  },
-  "footer": {
-    "text": "Seven Bot"
-  },
-  "action": {
-    "sections": [
-       {
-          "title":"your-section-title-content",
-          "rows": [
+    "type": "button",
+    "body": {
+        "text": "How did you come to know about 7Span?"
+    },
+    "footer": {
+        "text": "Seven Bot"
+    },
+    "action": {
+        # "button": "Select Any Medium",
+        # "sections": [
+        #     {
+        #         "title": "",
+        #         "rows": [
+        #             {
+        #                 "id": "1",
+        #                 "title": "Referred by Friend",
+        #                 "description": ""
+        #             },
+        #             {
+        #                 "id": "2",
+        #                 "title": "Instagram/Facebook",
+        #                 "description": ""
+        #             },
+        #             {
+        #                 "id": "3",
+        #                 "title": "Other",
+        #                 "description": ""
+        #             },
+        #             {
+        #                 "id": "4",
+        #                 "title": "HR Mail",
+        #                 "description": ""
+        #             }
+        #         ]
+        #     }
+        # ],
+        "buttons": [
             {
-              "id":"1",
-              "title": "row-title-content-1",
-              "description": "row-description-content"
+              "type": "reply",
+              "reply": {
+                "id": "1",
+                "title": "Referred by Friend"
+              }
             },
             {
-              "id":"2",
-              "title": "row-title-content-2",
-              "description": "row-description-content"
+              "type": "reply",
+              "reply": {
+                "id": "2",
+                "title": "Instagram/Facebook"
+              }
             },
             {
-              "id":"3",
-              "title": "row-title-content-3",
-              "description": "row-description-content"
+              "type": "reply",
+              "reply": {
+                "id": "3",
+                "title": "Other"
+              }
             },
-            {
-              "id":"4",
-              "title": "row-title-content-4",
-              "description": "row-description-content"
-            }
           ]
-        }
-    ],
-    "buttons": [
-        {
-          "type": "reply",
-          "reply": {
-            "id": "unique-postback-id",
-            "title": "First Button’s Title"
-          }
-        },
-        {
-          "type": "reply",
-          "reply": {
-            "id": "unique-postback-id",
-            "title": "Second Button’s Title"
-          }
-        }
-      ]
-  }
+    }
 }

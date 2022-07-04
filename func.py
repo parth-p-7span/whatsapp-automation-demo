@@ -19,6 +19,7 @@ def send_message(template, to):
 
 def send_selection_msg(to):
     response = requests.post(url=constants.WA_ENDPOINT, headers=constants.header, data={
+        "messaging_product": "whatsapp",
         "recipient_type": "individual",
         "to": to,
         "type": "interactive",

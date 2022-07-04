@@ -54,21 +54,12 @@ def index():
                 message_type = message_object['type']
 
                 if "skills" in message_text:
-                    func.send_selection_msg(message_object['from'])
+                    response = func.send_selection_msg(message_object['from'])
+                    print(response)
 
                 if "hi" in message_text:
-                    func.send_message("enter_email", message_object['from'])
-
-            # entries = body['entry']
-            # for entry in entries:
-            #     webhook_event = entry['messaging'][0]
-            #     print(webhook_event)
-            #
-            #     sender_psid = webhook_event['sender']['id']
-            #     print('Sender PSID => ', sender_psid)
-            #
-            #     if 'message' in webhook_event:
-            #         print('WEBHOOK EVENT MESSAGE => ', webhook_event['message'])
+                    response = func.send_message("enter_email", message_object['from'])
+                    print(response)
             return 'EVENT_RECEIVED', 200
         else:
             return 'ERROR', 404
