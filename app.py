@@ -68,6 +68,8 @@ def index():
 
         data = request.data
         body = json.load(data.decode('utf-8'))
+        print("DATA ==> ", data)
+        print("BODY ==> ", body)
         if 'object' in body and body['object'] == 'page':
             entries = body['entry']
             for entry in entries:
