@@ -67,7 +67,7 @@ def index():
                 return 'ERROR', 403
 
         data = request.data
-        body = json.load(data.decode('utf-8'))
+        body = json.load(data)
         print("DATA ==> ", data)
         print("BODY ==> ", body)
         if 'object' in body and body['object'] == 'page':
