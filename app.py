@@ -67,24 +67,23 @@ def index():
                 return 'ERROR', 403
 
         data = request.data
-        # body = json.load(data)
-        print("DATA TYPE ==> ", type(data))
+        body = json.loads(data.decode('utf8'))
         print("DATA ==> ", data)
-        # print("BODY ==> ", body)
-        # if 'object' in body and body['object'] == 'page':
-        #     entries = body['entry']
-        #     for entry in entries:
-        #         webhook_event = entry['messaging'][0]
-        #         print(webhook_event)
-        #
-        #         sender_psid = webhook_event['sender']['id']
-        #         print('Sender PSID => ', sender_psid)
-        #
-        #         if 'message' in webhook_event:
-        #             print('WEBHOOK EVENT MESSAGE => ', webhook_event['message'])
-        #         return 'EVENT_RECEIVED', 200
-        # else:
-        #     return 'ERROR', 404
+        print("BODY ==> ", body)
+        if 'object' in body and body['object'] == 'page':
+            entries = body['entry']
+            for entry in entries:
+                webhook_event = entry['messaging'][0]
+                print(webhook_event)
+
+                sender_psid = webhook_event['sender']['id']
+                print('Sender PSID => ', sender_psid)
+
+                if 'message' in webhook_event:
+                    print('WEBHOOK EVENT MESSAGE => ', webhook_event['message'])
+                return 'EVENT_RECEIVED', 200
+        else:
+            return 'ERROR', 404
 
 
 if __name__ == '__main__':
