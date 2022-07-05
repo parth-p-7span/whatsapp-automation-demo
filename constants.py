@@ -1,7 +1,7 @@
 WA_ENDPOINT = 'https://graph.facebook.com/v13.0/106519662119427/messages'
 
 header = {
-    "Authorization": "Bearer EABMCARdnUF8BAAPYpAXpZB4Dt3S7uxFZCKeD7iuCECaycZAvKoNz6s7mAJywflAci2FZBknuxYiG7COC4ZAUaOfFMNzptSHa7ZC6Sahn0SPAV2hFCMN3CilUyUYOMvem4pg6E9nJZCCZBZBXT0ZCAfKU8tNdrIZCpvujzI5JQUxYHtNCjxDJKWB1aZBZBozSFL3zVWJKoYhxT5EutLdT6aqg4sv3U",
+    "Authorization": "Bearer EABMCARdnUF8BAIDqRLwBmDz5DEoq1BbIUmoz91oLz67ayLWHNrDoomvg0GGLLeVw7wptojDwvVuwIljCmpBzhop8Bw2dZCfbDtZBSbrSVWeANP4XPKhEZAfl9ZAhFDCVSOaWNLZCobvJKSKVzI0UNV1x60cTe2osZAyZBRSOEPKqieGfgbkFgZA3VotZATCmlY7XtMM75nKdRGIqI7GxCdwqW",
     "Content-Type": "application/json"
 }
 
