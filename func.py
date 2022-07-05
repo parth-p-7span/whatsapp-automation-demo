@@ -4,17 +4,14 @@ import requests
 import constants
 
 
-def send_message(template, to):
+def send_message(message, to):
     response = requests.post(url=constants.WA_ENDPOINT, headers=constants.header, data=json.dumps(
         {
             "messaging_product": "whatsapp",
             "to": to,
-            "type": "template",
-            "template": {
-                "name": template,
-                "language": {
-                    "code": "en_US"
-                }
+            "type": "text",
+            "text": {
+                "body": message,
             }
         }
     ))
