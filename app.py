@@ -48,18 +48,19 @@ def index():
             message_value = body['entry'][0]['changes'][0]['value']
             message_product = message_value['messaging_product']
             if message_product == 'whatsapp':
-                message_author = message_value['contacts'][0]
-                message_object = message_value['messages'][0]
-                message_text = message_object['text']['body']
-                message_type = message_object['type']
+                if 'messages' in message_value:
+                    message_author = message_value['messages'][0]['from']
+                    message_object = message_value['messages'][0]
+                    message_text = message_object['text']['body']
+                    message_type = message_object['type']
 
-                if "skills" in message_text:
-                    response = func.send_selection_msg(message_object['from'])
-                    print(response)
+                    if "skills" in message_text:
+                        response = func.send_selection_msg(message_object['from'])
+                        print(response)
 
-                if "hi" in message_text:
-                    response = func.send_message("enter_email", message_object['from'])
-                    print(response)
+                    if "hi" in message_text:
+                        response = func.send_message("enter_email", message_object['from'])
+                        print(response)
             return 'EVENT_RECEIVED', 200
         else:
             return 'ERROR', 404
