@@ -53,7 +53,7 @@ def index():
                     author_name = message_value['contacts'][0]['profile']['name']
                     message_object = message_value['messages'][0]
                     message_type = message_object['type']
-                    with open('data.json', 'w') as f:
+                    with open('data.json', 'r') as f:
                         data = json.load(f)
                     try:
                         user_data = data[message_author]
