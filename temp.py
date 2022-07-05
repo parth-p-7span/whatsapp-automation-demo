@@ -103,7 +103,12 @@ import func
 #         }
 #     ],
 # }
-a = {"name": "parth"}
-print(a)
-a["name"] = "hitchhicker"
-print(a)
+
+import json
+
+with open('data.json', 'w') as f:
+    data = json.loads(f.read())
+# a = {"name": "parth"}
+# print(a)
+# a["name"] = "hitchhicker"
+# print(a)

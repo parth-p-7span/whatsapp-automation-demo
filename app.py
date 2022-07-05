@@ -54,7 +54,7 @@ def index():
                     message_object = message_value['messages'][0]
                     message_type = message_object['type']
                     with open('data.json', 'w') as f:
-                        data = json.loads(f.read())
+                        data = json.load(f)
                     try:
                         user_data = data[message_author]
                         last_msg = user_data[0]
