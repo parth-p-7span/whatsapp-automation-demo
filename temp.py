@@ -63,52 +63,51 @@ import func
 #         }
 #     ],
 # }
-#
-#
-# b = {
-#     "object": "whatsapp_business_account",
-#     "entry": [
-#         {
-#             "id": "104861202286839",
-#             "changes": [
-#                 {
-#                     "value": {
-#                         "messaging_product": "whatsapp",
-#                         "metadata": {
-#                             "display_phone_number": "15550054716",
-#                             "phone_number_id": "106519662119427",
-#                         },
-#                         "contacts": [
-#                             {"profile": {"name": "Parth"}, "wa_id": "917227856454"}
-#                         ],
-#                         "messages": [
-#                             {
-#                                 "from": "917227856454",
-#                                 "id": "wamid.HBgMOTE3MjI3ODU2NDU0FQIAEhggNTg3NDJDQTZFQzM2MDQxQ0U5NzVGMDE1RDUzRTk0RjkA",
-#                                 "timestamp": "1657026173",
-#                                 "type": "document",
-#                                 "document": {
-#                                     "caption": "certificate.pdf",
-#                                     "filename": "certificate.pdf",
-#                                     "mime_type": "application/pdf",
-#                                     "sha256": "D/oNA1RlM9Zm9oAAPvkE5y/Z9LftB98Kdou fRuPAnI=",
-#                                     "id": "1159973034927406",
-#                                 },
-#                             }
-#                         ],
-#                     },
-#                     "field": "messages",
-#                 }
-#             ],
-#         }
-#     ],
-# }
 
-import json
 
-with open('data.json', 'w') as f:
-    data = json.loads(f.read())
-# a = {"name": "parth"}
-# print(a)
-# a["name"] = "hitchhicker"
-# print(a)
+b = {
+    "object": "whatsapp_business_account",
+    "entry": [
+        {
+            "id": "104861202286839",
+            "changes": [
+                {
+                    "value": {
+                        "messaging_product": "whatsapp",
+                        "metadata": {
+                            "display_phone_number": "15550054716",
+                            "phone_number_id": "106519662119427",
+                        },
+                        "contacts": [
+                            {"profile": {"name": "Parth"}, "wa_id": "917227856454"}
+                        ],
+                        "messages": [
+                            {
+                                "from": "917227856454",
+                                "id": "wamid.HBgMOTE3MjI3ODU2NDU0FQIAEhggNTg3NDJDQTZFQzM2MDQxQ0U5NzVGMDE1RDUzRTk0RjkA",
+                                "timestamp": "1657026173",
+                                "type": "document",
+                                "document": {
+                                    "caption": "certificate.pdf",
+                                    "filename": "certificate.pdf",
+                                    "mime_type": "application/pdf",
+                                    "sha256": "D/oNA1RlM9Zm9oAAPvkE5y/Z9LftB98Kdou fRuPAnI=",
+                                    "id": "1159973034927406",
+                                },
+                            }
+                        ],
+                    },
+                    "field": "messages",
+                }
+            ],
+        }
+    ],
+}
+
+res = requests.put(
+    url='https://graph.facebook.com/v13.0/messages/wamid.HBgMOTE4NzgwNDk1ODA0FQIAEhggQkU2OURGQUYyMzdCNDlBRkQ1QUI4RERBNDdENDBBOEIA',
+    headers=constants.header,
+    data=json.dumps({"status": "read"})
+)
+
+print(res.json())

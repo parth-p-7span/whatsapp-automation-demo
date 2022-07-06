@@ -1,6 +1,8 @@
 from flask import Flask, request
 import requests
 import json
+
+import constants
 import func
 
 app = Flask(__name__)
@@ -57,7 +59,7 @@ def index():
                         data = json.load(f)
                     try:
                         user_data = data[message_author]
-                        last_msg = user_data[0]
+                        last_msg = user_data[-1]
                     except:
                         user_data = []
                         last_msg = -1
