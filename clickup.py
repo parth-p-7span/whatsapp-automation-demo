@@ -40,6 +40,9 @@ def get_user_data(whatsapp_id):
         url='%s?custom_fields=[{"field_id": "%s", "operator":"=", "value": "%s"}]' % (constants.list_url, constants.whatsapp_field_id, whatsapp_id),
         headers=constants.clickup_header
     )
+    if response.json()['tasks'] == []:
+        return 0, 0
+    # if response.json()
     task_data = response.json()['tasks'][0]['custom_fields']
     data = []
     for field in task_data:
