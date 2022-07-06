@@ -28,3 +28,13 @@ def send_selection_msg(to):
     }))
     return response.json()
 
+
+def mark_as_read(message_id):
+    res = requests.post(
+        url=constants.WA_ENDPOINT,
+        headers=constants.header,
+        data=json.dumps({"messaging_product": "whatsapp", "status": "read",
+                         "message_id": message_id})
+    )
+
+    print(res.json())
