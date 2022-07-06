@@ -148,10 +148,6 @@ def index():
                             if 'messages' in response:
                                 user_data.append(10)
                             print(response)
-                    else:
-                        string = "Sorry, the message format is not accepted by the system."
-                        response = func.send_message(string, message_object['from'])
-                        print(response)
 
                     data[message_author] = user_data
                     with open('data.json', 'w') as f:
