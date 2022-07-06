@@ -4,6 +4,7 @@ import json
 
 import constants
 import func
+import clickup
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '12cne83nds3v-faj32bde-bba8-cje23-2dbr'
@@ -55,103 +56,90 @@ def index():
                     author_name = message_value['contacts'][0]['profile']['name']
                     message_object = message_value['messages'][0]
                     message_type = message_object['type']
-                    with open('data.json', 'r') as f:
-                        data = json.load(f)
-                    try:
-                        user_data = data[message_author]
-                        last_msg = user_data[-1]
-                    except:
-                        user_data = []
-                        last_msg = -1
+
+                    task_id, users_data = clickup.get_user_data(message_object['from'])
+                    last_msg = 0
+                    for i, value in enumerate(users_data):
+                        if value == 0:
+                            last_msg = i
+                            break
 
                     if message_type == "interactive" and last_msg == 10:
+
                         message_text = message_object['interactive']['button_reply']['title']
+                        clickup.set_custom_field_value(task_id, constants.mediator_field_id, constants.custom_field_ids[message_text])
                         string = "11. Please upload your resume then you are finish with the process."
                         response = func.send_message(string, message_object['from'])
-                        if 'messages' in response:
-                            user_data.append(11)
                         print(response)
                     elif message_type == "document" and last_msg == 11:
                         string = "Thank you for applying to 7Span, our HR will contact you shortly."
                         response = func.send_message(string, message_object['from'])
                         if 'messages' in response:
-                            user_data.append(11)
+                            pass
                         print(response)
                     elif message_type == "text":
                         message_text = message_object['text']['body']
 
-                        if "hi" in message_text.lower() or "hello" in message_text.lower() and last_msg == 0:
+                        if "hi" in message_text.lower() or "hello" in message_text.lower():
+                            clickup.create_new_task(author_name)
+                            clickup.set_custom_field_value(task_id, constants.whatsapp_field_id, message_object['from'])
                             string = f"Hi {author_name},\nThankyou for applying in 7Span. I am auto-reply Bot of 7Span. You just have to answer few questions to send your application.\n\n1.Please enter your full name."
                             response = func.send_message(string, message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(1)
+                            print(response)
+
+                        if last_msg == 0:
+                            clickup.update_task_name(task_id, message_text)
+                            clickup.set_custom_field_value(task_id, constants.name_field_id, message_text.lower())
+                            string = "2. Please enter your official email address."
+                            response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 1:
-                            string = "2. Please enter your official email address."
+                            clickup.set_custom_field_value(task_id, constants.email_field_id, message_text.lower)
+                            string = "3. Please enter your official mobile number."
                             response = func.send_message(string, message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(2)
                             print(response)
 
                         if last_msg == 2:
-                            string = "3. Please enter your official mobile number."
+                            clickup.set_custom_field_value(task_id, constants.mobile_field_id, message_text)
+                            string = "4. Please enter your skills separated by comma. e.g. React, Laravel, Angular, Python"
                             response = func.send_message(string, message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(3)
                             print(response)
 
                         if last_msg == 3:
-                            string = "4. Please enter your skills separated by comma. e.g. React, Laravel, Angular, Python"
+                            clickup.set_custom_field_value(task_id, constants.skills_field_id, message_text)
+                            string = "5. Please enter your total years of experience."
                             response = func.send_message(string, message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(4)
                             print(response)
 
                         if last_msg == 4:
-                            string = "5. Please enter your total years of experience."
+                            clickup.set_custom_field_value(task_id, constants.experience_field_id, message_text)
+                            string = "6. Please enter your current/last company name"
                             response = func.send_message(string, message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(5)
                             print(response)
 
                         if last_msg == 5:
-                            string = "6. Please enter your current/last company name"
+                            clickup.set_custom_field_value(task_id, constants.last_company_field_id, message_text)
+                            string = "7. Please enter your current CTC(Per Annum)"
                             response = func.send_message(string, message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(6)
                             print(response)
 
                         if last_msg == 6:
-                            string = "7. Please enter your current CTC(Per Annum)"
+                            clickup.set_custom_field_value(task_id, constants.ctc_field_id, message_text)
+                            string = "8. Please enter your current location"
                             response = func.send_message(string, message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(7)
                             print(response)
 
                         if last_msg == 7:
-                            string = "8. Please enter your current location"
-                            response = func.send_message(string, message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(8)
-                            print(response)
-
-                        if last_msg == 8:
+                            clickup.set_custom_field_value(task_id, constants.location_field_id, message_text)
                             string = "9. Please enter little summary about you."
                             response = func.send_message(string, message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(9)
                             print(response)
 
                         if last_msg == 9:
+                            clickup.set_custom_field_value(task_id, constants.summary_field_id, message_text)
                             response = func.send_selection_msg(message_object['from'])
-                            if 'messages' in response:
-                                user_data.append(10)
                             print(response)
-
-                    data[message_author] = user_data
-                    with open('data.json', 'w') as f:
-                        f.write(json.dumps(data))
 
             return 'EVENT_RECEIVED', 200
         else:

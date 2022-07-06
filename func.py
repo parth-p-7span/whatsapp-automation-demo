@@ -27,3 +27,4 @@ def send_selection_msg(to):
         "interactive": constants.interactive_msg_body
     }))
     return response.json()
+
