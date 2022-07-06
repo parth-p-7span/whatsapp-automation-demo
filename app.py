@@ -51,7 +51,7 @@ def index():
             message_value = body['entry'][0]['changes'][0]['value']
             message_product = message_value['messaging_product']
             if message_product == 'whatsapp':
-                if 'messages' in message_value
+                if 'messages' in message_value:
                     author_name = message_value['contacts'][0]['profile']['name']
                     message_object = message_value['messages'][0]
                     message_type = message_object['type']
