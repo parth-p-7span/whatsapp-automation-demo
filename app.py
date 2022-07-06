@@ -65,7 +65,7 @@ def index():
                             if value == 0:
                                 last_msg = i
                                 break
-
+                    print("-------->"+users_data)
                     if message_type == "interactive" and last_msg == 10:
 
                         message_text = message_object['interactive']['button_reply']['title']
