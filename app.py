@@ -59,7 +59,7 @@ def index():
 
                     func.mark_as_read(message_id)
                     task_id, users_data = clickup.get_user_data(message_object['from'])
-                    last_msg = 0
+                    last_msg = -1
                     if users_data != 0:
                         for i, value in enumerate(users_data):
                             if value == 0:
