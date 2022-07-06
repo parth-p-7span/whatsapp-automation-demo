@@ -59,10 +59,11 @@ def index():
 
                     task_id, users_data = clickup.get_user_data(message_object['from'])
                     last_msg = 0
-                    for i, value in enumerate(users_data):
-                        if value == 0:
-                            last_msg = i
-                            break
+                    if users_data != 0:
+                        for i, value in enumerate(users_data):
+                            if value == 0:
+                                last_msg = i
+                                break
 
                     if message_type == "interactive" and last_msg == 10:
 
