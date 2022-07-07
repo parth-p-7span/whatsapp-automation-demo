@@ -53,3 +53,9 @@ class Firebase:
             if "platform" in entered_data:
                 fields[10] = 1
         return fields
+
+    @staticmethod
+    def delete_data(user_id):
+        ref = db.reference(f'/{user_id}')
+        res = ref.delete()
+        return res
