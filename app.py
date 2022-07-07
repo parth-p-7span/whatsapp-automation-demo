@@ -66,7 +66,7 @@ def index():
                     last_msg = -1
                     for i, value in enumerate(users_data):
                         if value == 0:
-                            last_msg = i
+                            last_msg = i-1
                             break
                     print("-------->", users_data)
                     if message_type == "interactive" and last_msg == 10:
