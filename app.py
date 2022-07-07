@@ -56,6 +56,7 @@ def index():
                     message_object = message_value['messages'][0]
                     message_type = message_object['type']
                     message_id = message_object['id']
+                    is_hi_msg = False
 
                     func.mark_as_read(message_id)
                     try:
@@ -91,8 +92,8 @@ def index():
                             string = f"Hi {author_name},\nThankyou for applying in 7Span. I am auto-reply Bot of 7Span. You just have to answer few questions to send your application.\n\n1.Please enter your full name."
                             response = func.send_message(string, message_object['from'])
                             print(response)
-
-                        if last_msg == 0:
+                            is_hi_msg = True
+                        if last_msg == 0 and not is_hi_msg:
                             clickup.update_task_name(task_id, message_text)
                             clickup.set_custom_field_value(task_id, constants.name_field_id, message_text.lower())
                             string = "2. Please enter your official email address."
