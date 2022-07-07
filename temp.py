@@ -105,13 +105,15 @@ b = {
         }
     ],
 }
-#
+
 # res = requests.post(
 #     url="https://graph.facebook.com/v13.0/106519662119427/services/messages/gc",
 #     headers=constants.header,
 #     data=json.dumps({"messaging_product": "whatsapp", "status": "read", "message_id": "wamid.HBgMOTE4NzgwNDk1ODA0FQIAEhggNDMwNjhGODlGRDEwMEI2NEQyQjgwMDYyODczRjYzNDUA"})
 # )
-#
+
 # print(res.json())
-print(clickup.set_custom_field_value('2hr8zf4', constants.mobile_field_id, "+917227856454"))
+print(clickup.set_custom_field_value('2hr97ma', constants.mediator_field_id, ["d8e41d7a-b449-41dc-9b07-540acb67a0f9"]))
 # print(clickup.update_task_name('2hr8wtw', 'temp'))
+# print(clickup.get_user_data('918780495804'))
+

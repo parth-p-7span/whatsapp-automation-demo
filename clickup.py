@@ -51,8 +51,8 @@ def get_user_data(whatsapp_id):
             data.append(0)
     final_data = arrange(data)
     task_id = response.json()['tasks'][0]['id']
-    return task_id, final_data
-    # return response.json()
+    # return task_id, final_data
+    return response.json()
 
 
 def arrange(data):

@@ -73,7 +73,7 @@ def index():
 
                         message_text = message_object['interactive']['button_reply']['title']
                         clickup.set_custom_field_value(task_id, constants.mediator_field_id,
-                                                       constants.custom_field_ids[message_text])
+                                                       [constants.custom_field_ids[message_text]])
                         string = "11. Please upload your resume then you are finish with the process."
                         response = func.send_message(string, message_object['from'])
                         print(response)
