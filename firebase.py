@@ -13,7 +13,7 @@ class Firebase:
     @staticmethod
     def create_user(user_id, whatsapp_name):
         ref = db.reference('/')
-        ref.set({user_id: {'wa_name': whatsapp_name}})
+        ref.update({user_id: {'wa_name': whatsapp_name}})
         return ref.get()
 
     @staticmethod
