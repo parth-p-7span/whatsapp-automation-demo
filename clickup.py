@@ -41,8 +41,6 @@ def get_user_data(whatsapp_id):
             constants.list_url, constants.whatsapp_field_id, whatsapp_id),
         headers=constants.clickup_header
     )
-    if response.json()['tasks'] == []:
-        return 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     # if response.json()
     task_data = response.json()['tasks'][0]['custom_fields']
     data = []
@@ -61,5 +59,3 @@ def arrange(data):
     """[ctc, email, exp, name, last_comp, loc, med, mob, ski, sum, wa] -> [wa, name, email, mob, ski, exp, last_comp, ctc, loc, sum, med]"""
     return [data[10], data[3], data[1], data[7], data[8], data[2], data[4], data[0], data[5], data[9], data[6]]
 
-
-print(get_user_data("918780495804"))

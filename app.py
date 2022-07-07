@@ -58,18 +58,21 @@ def index():
                     message_id = message_object['id']
 
                     func.mark_as_read(message_id)
-                    task_id, users_data = clickup.get_user_data(message_object['from'])
+                    try:
+                        task_id, users_data = clickup.get_user_data(message_object['from'])
+                    except:
+                        task_id, users_data = 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                     last_msg = -1
-                    if users_data != 0:
-                        for i, value in enumerate(users_data):
-                            if value == 0:
-                                last_msg = i
-                                break
+                    for i, value in enumerate(users_data):
+                        if value == 0:
+                            last_msg = i
+                            break
                     print("-------->", users_data)
                     if message_type == "interactive" and last_msg == 10:
 
                         message_text = message_object['interactive']['button_reply']['title']
-                        clickup.set_custom_field_value(task_id, constants.mediator_field_id, constants.custom_field_ids[message_text])
+                        clickup.set_custom_field_value(task_id, constants.mediator_field_id,
+                                                       constants.custom_field_ids[message_text])
                         string = "11. Please upload your resume then you are finish with the process."
                         response = func.send_message(string, message_object['from'])
                         print(response)
