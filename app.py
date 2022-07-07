@@ -101,13 +101,13 @@ def index():
                             print(response)
 
                         if last_msg == 1:
-                            clickup.set_custom_field_value(task_id, constants.email_field_id, f'+91{message_text}')
+                            clickup.set_custom_field_value(task_id, constants.email_field_id, message_text)
                             string = "3. Please enter your official mobile number."
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 2:
-                            clickup.set_custom_field_value(task_id, constants.mobile_field_id, message_text)
+                            clickup.set_custom_field_value(task_id, constants.mobile_field_id, f'+91{message_text}')
                             string = "4. Please enter your skills separated by comma. e.g. React, Laravel, Angular, Python"
                             response = func.send_message(string, message_object['from'])
                             print(response)
