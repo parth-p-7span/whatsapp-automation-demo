@@ -69,9 +69,10 @@ def index():
                             last_msg = i-1
                             break
                     print("-------->", users_data)
-                    if message_type == "interactive" and last_msg == 10:
+                    if message_type == "interactive":
 
                         message_text = message_object['interactive']['button_reply']['title']
+                        print(f"------------{message_text}")
                         clickup.set_custom_field_value(task_id, constants.mediator_field_id,
                                                        [constants.custom_field_ids[message_text]])
                         string = "11. Please upload your resume then you are finish with the process."

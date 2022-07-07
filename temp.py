@@ -113,7 +113,7 @@ b = {
 # )
 
 # print(res.json())
-print(clickup.set_custom_field_value('2hr97ma', constants.mediator_field_id, ["d8e41d7a-b449-41dc-9b07-540acb67a0f9"]))
+print(clickup.set_custom_field_value('2hr97ma', constants.mediator_field_id, [constants.custom_field_ids["Instagram/Facebook"]]))
 # print(clickup.update_task_name('2hr8wtw', 'temp'))
 # print(clickup.get_user_data('918780495804'))
 
