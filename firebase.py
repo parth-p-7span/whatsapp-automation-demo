@@ -3,24 +3,21 @@ from firebase_admin import db
 
 
 class Firebase:
-    @staticmethod
-    def create_user(user_id, whatsapp_name):
+    def __init__(self):
         database_url = "https://wa-bot-4eb4a-default-rtdb.asia-southeast1.firebasedatabase.app/"
         cred_obj = firebase_admin.credentials.Certificate('wa-bot-4eb4a-firebase-adminsdk-foyvr-96dbd6de2b.json')
         default_app = firebase_admin.initialize_app(cred_obj, {
             'databaseURL': database_url
         })
+
+    @staticmethod
+    def create_user(user_id, whatsapp_name):
         ref = db.reference('/')
         ref.set({user_id: {'wa_name': whatsapp_name}})
         return ref.get()
 
     @staticmethod
     def update_user(user_id, field_name, field_value):
-        database_url = "https://wa-bot-4eb4a-default-rtdb.asia-southeast1.firebasedatabase.app/"
-        cred_obj = firebase_admin.credentials.Certificate('wa-bot-4eb4a-firebase-adminsdk-foyvr-96dbd6de2b.json')
-        default_app = firebase_admin.initialize_app(cred_obj, {
-            'databaseURL': database_url
-        })
         ref = db.reference(f'/{user_id}')
         ref.update({field_name: field_value})
         return ref.get()
@@ -28,12 +25,6 @@ class Firebase:
     @staticmethod
     def get_user_data(user_id):
         """[name, email, mobile, skills, experience, last_company, ctc, location, summary, platform]"""
-
-        database_url = "https://wa-bot-4eb4a-default-rtdb.asia-southeast1.firebasedatabase.app/"
-        cred_obj = firebase_admin.credentials.Certificate('wa-bot-4eb4a-firebase-adminsdk-foyvr-96dbd6de2b.json')
-        default_app = firebase_admin.initialize_app(cred_obj, {
-            'databaseURL': database_url
-        })
         ref = db.reference(f'/{user_id}')
         data = ref.get()
         fields = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
