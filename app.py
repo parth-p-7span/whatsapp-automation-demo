@@ -90,7 +90,7 @@ def index():
                     elif message_type == "text":
                         message_text = message_object['text']['body']
 
-                        if (message_text.lower() == "hi" or message_text.lower() == "hello" or message_text.lower() == "hii") and last_msg == -1:
+                        if message_text.lower() == "hi" or message_text.lower() == "hello" or message_text.lower() == "hii":
                             instance.delete_data(user_id)
                             instance.create_user(user_id, author_name)
                             # response = clickup.create_new_task(author_name)
@@ -100,6 +100,7 @@ def index():
                             string = f"Hi {author_name},\nThankyou for applying in 7Span. I am auto-reply Bot of 7Span. You just have to answer few questions to send your application.\n\n1.Please enter your full name."
                             response = func.send_message(string, message_object['from'])
                             print(response)
+                            last_msg = -2
 
                         if last_msg == 0:
                             instance.update_user(user_id, "name", message_text)
