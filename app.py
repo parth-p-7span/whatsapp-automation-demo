@@ -80,13 +80,11 @@ def index():
                     elif message_type == "document" and last_msg == 11:
                         string = "Thank you for applying to 7Span, our HR will contact you shortly."
                         response = func.send_message(string, message_object['from'])
-                        if 'messages' in response:
-                            pass
                         print(response)
                     elif message_type == "text":
                         message_text = message_object['text']['body']
 
-                        if "hi" in message_text.lower() or "hello" in message_text.lower():
+                        if message_text.lower() == "hi" or message_text.lower() == "hello" or message_text.lower() == "hii":
                             response = clickup.create_new_task(author_name)
                             clickup.set_custom_field_value(response['id'], constants.whatsapp_field_id, message_object['from'])
                             string = f"Hi {author_name},\nThankyou for applying in 7Span. I am auto-reply Bot of 7Span. You just have to answer few questions to send your application.\n\n1.Please enter your full name."
