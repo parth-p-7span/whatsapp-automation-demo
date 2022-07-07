@@ -142,7 +142,7 @@ def index():
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
-                        if last_msg == 9:
+                        if last_msg == 8:
                             clickup.set_custom_field_value(task_id, constants.summary_field_id, message_text)
                             response = func.send_selection_msg(message_object['from'])
                             print(response)
