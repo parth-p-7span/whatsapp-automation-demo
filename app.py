@@ -87,8 +87,8 @@ def index():
                         message_text = message_object['text']['body']
 
                         if "hi" in message_text.lower() or "hello" in message_text.lower():
-                            clickup.create_new_task(author_name)
-                            clickup.set_custom_field_value(task_id, constants.whatsapp_field_id, message_object['from'])
+                            response = clickup.create_new_task(author_name)
+                            clickup.set_custom_field_value(response['id'], constants.whatsapp_field_id, message_object['from'])
                             string = f"Hi {author_name},\nThankyou for applying in 7Span. I am auto-reply Bot of 7Span. You just have to answer few questions to send your application.\n\n1.Please enter your full name."
                             response = func.send_message(string, message_object['from'])
                             print(response)
