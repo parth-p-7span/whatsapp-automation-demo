@@ -21,7 +21,7 @@ def update_task_name(task_id, name):
     response = requests.put(
         url=f'{constants.get_task}/{task_id}',
         headers=constants.clickup_header,
-        data=json.dumps({"name":name})
+        data=json.dumps({"name": name})
     )
     return response.json()
 
@@ -37,11 +37,12 @@ def set_custom_field_value(task_id, field_id, value):
 
 def get_user_data(whatsapp_id):
     response = requests.get(
-        url='%s?custom_fields=[{"field_id": "%s", "operator":"=", "value": "%s"}]' % (constants.list_url, constants.whatsapp_field_id, whatsapp_id),
+        url='%s?custom_fields=[{"field_id": "%s", "operator":"=", "value": "%s"}]' % (
+            constants.list_url, constants.whatsapp_field_id, whatsapp_id),
         headers=constants.clickup_header
     )
     if response.json()['tasks'] == []:
-        return 0, 0
+        return 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     # if response.json()
     task_data = response.json()['tasks'][0]['custom_fields']
     data = []
