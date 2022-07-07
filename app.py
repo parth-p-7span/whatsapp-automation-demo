@@ -61,7 +61,7 @@ def index():
 
                     func.mark_as_read(message_id)
 
-                    users_data = Firebase.get_user_data(user_id)
+                    users_data = instance.get_user_data(user_id)
 
                     last_msg = -1
                     for i, value in enumerate(users_data):
@@ -73,7 +73,7 @@ def index():
 
                     if message_type == "interactive":
                         message_text = message_object['interactive']['button_reply']['title']
-                        Firebase.update_user(user_id, "platform", message_text)
+                        instance.update_user(user_id, "platform", message_text)
                         # clickup.set_custom_field_value(task_id, constants.mediator_field_id,
                         #                                [constants.custom_field_ids[message_text]])
                         string = "11. Please upload your resume then you are finish with the process."
@@ -92,14 +92,14 @@ def index():
                             # response = clickup.create_new_task(author_name)
                             # clickup.set_custom_field_value(response['id'], constants.whatsapp_field_id,
                             #                                message_object['from'])
-                            Firebase.create_user(user_id, author_name)
+                            instance.create_user(user_id, author_name)
 
                             string = f"Hi {author_name},\nThankyou for applying in 7Span. I am auto-reply Bot of 7Span. You just have to answer few questions to send your application.\n\n1.Please enter your full name."
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 0:
-                            Firebase.update_user(user_id, "name", message_text)
+                            instance.update_user(user_id, "name", message_text)
                             # clickup.update_task_name(task_id, message_text)
                             # clickup.set_custom_field_value(task_id, constants.name_field_id, message_text)
                             string = "2. Please enter your official email address."
@@ -107,56 +107,56 @@ def index():
                             print(response)
 
                         if last_msg == 1:
-                            Firebase.update_user(user_id, "email", message_text)
+                            instance.update_user(user_id, "email", message_text)
                             # clickup.set_custom_field_value(task_id, constants.email_field_id, message_text)
                             string = "3. Please enter your official mobile number."
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 2:
-                            Firebase.update_user(user_id, "mobile", message_text)
+                            instance.update_user(user_id, "mobile", message_text)
                             # clickup.set_custom_field_value(task_id, constants.mobile_field_id, f'+91{message_text}')
                             string = "4. Please enter your skills separated by comma. e.g. React, Laravel, Angular, Python"
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 3:
-                            Firebase.update_user(user_id, "skills", message_text)
+                            instance.update_user(user_id, "skills", message_text)
                             # clickup.set_custom_field_value(task_id, constants.skills_field_id, message_text)
                             string = "5. Please enter your total years of experience."
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 4:
-                            Firebase.update_user(user_id, "experience", message_text)
+                            instance.update_user(user_id, "experience", message_text)
                             # clickup.set_custom_field_value(task_id, constants.experience_field_id, message_text)
                             string = "6. Please enter your current/last company name"
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 5:
-                            Firebase.update_user(user_id, "last_company", message_text)
+                            instance.update_user(user_id, "last_company", message_text)
                             # clickup.set_custom_field_value(task_id, constants.last_company_field_id, message_text)
                             string = "7. Please enter your current CTC(Per Annum)"
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 6:
-                            Firebase.update_user(user_id, "ctc", message_text)
+                            instance.update_user(user_id, "ctc", message_text)
                             # clickup.set_custom_field_value(task_id, constants.ctc_field_id, message_text)
                             string = "8. Please enter your current location"
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 7:
-                            Firebase.update_user(user_id, "location", message_text)
+                            instance.update_user(user_id, "location", message_text)
                             # clickup.set_custom_field_value(task_id, constants.location_field_id, message_text)
                             string = "9. Please enter little summary about you."
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 8:
-                            Firebase.update_user(user_id, "summary", message_text)
+                            instance.update_user(user_id, "summary", message_text)
                             # clickup.set_custom_field_value(task_id, constants.summary_field_id, message_text)
                             response = func.send_selection_msg(message_object['from'])
                             print(response)
@@ -167,6 +167,7 @@ def index():
 
 
 if __name__ == '__main__':
+    instance = Firebase()
+
     # app.run(host='localhost', port=8080, debug=True)
-    Firebase.initialize_firebase()
     app.run()
