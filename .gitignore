@@ -1,2 +1,6 @@
 ./venv
 ./.idea
+temp.py
+temp.json
+deploy.sh
+data.json

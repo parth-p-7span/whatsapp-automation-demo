@@ -95,13 +95,13 @@ def index():
                             is_hi_msg = True
                         if last_msg == 0 and not is_hi_msg:
                             clickup.update_task_name(task_id, message_text)
-                            clickup.set_custom_field_value(task_id, constants.name_field_id, message_text.lower())
+                            clickup.set_custom_field_value(task_id, constants.name_field_id, message_text)
                             string = "2. Please enter your official email address."
                             response = func.send_message(string, message_object['from'])
                             print(response)
 
                         if last_msg == 1:
-                            clickup.set_custom_field_value(task_id, constants.email_field_id, message_text.lower)
+                            clickup.set_custom_field_value(task_id, constants.email_field_id, message_text)
                             string = "3. Please enter your official mobile number."
                             response = func.send_message(string, message_object['from'])
                             print(response)

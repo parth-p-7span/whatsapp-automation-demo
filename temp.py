@@ -1,4 +1,6 @@
 import requests
+
+import clickup
 import constants
 import json
 import func
@@ -110,4 +112,6 @@ res = requests.post(
     data=json.dumps({"messaging_product": "whatsapp", "status": "read", "message_id": "wamid.HBgMOTE4NzgwNDk1ODA0FQIAEhggNDMwNjhGODlGRDEwMEI2NEQyQjgwMDYyODczRjYzNDUA"})
 )
 
-print(res.json())
+# print(res.json())
+# print(clickup.set_custom_field_value('2hr8wtw', constants.name_field_id, None))
+# print(clickup.update_task_name('2hr8wtw', 'temp'))
