@@ -83,6 +83,9 @@ def index():
                         print(response)
 
                     elif message_type == "document" and last_msg == 11:
+                        doc_name = message_object['document']['filename']
+                        doc_id = message_object['document']['id']
+                        instance.update_user(user_id, "resume", {"id": doc_id, "name": doc_name})
                         string = "Thank you for applying to 7Span, our HR will contact you shortly."
                         response = func.send_message(string, message_object['from'])
                         print(response)

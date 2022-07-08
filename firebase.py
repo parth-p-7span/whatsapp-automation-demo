@@ -27,7 +27,7 @@ class Firebase:
         """[name, email, mobile, skills, experience, last_company, ctc, location, summary, platform]"""
         ref = db.reference(f'/{user_id}')
         data = ref.get()
-        fields = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        fields = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         if isinstance(data, dict):
             entered_data = data.keys()
             if "wa_name" in entered_data:
@@ -52,6 +52,8 @@ class Firebase:
                 fields[9] = 1
             if "platform" in entered_data:
                 fields[10] = 1
+            if "resume" in entered_data:
+                fields[11] = 1
         return fields
 
     @staticmethod
