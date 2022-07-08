@@ -85,12 +85,10 @@ def index():
                     elif message_type == "document" and last_msg == 10:
                         doc_name = message_object['document']['filename']
                         doc_id = message_object['document']['id']
-                        print("=====", doc_id, "====", doc_name)
-                        data = instance.update_user(user_id, "resume", {"id": doc_id, "name": doc_name})
-                        print(data)
-                        # string = "Thank you for applying to 7Span, our HR will contact you shortly."
-                        # response = func.send_message(string, message_object['from'])
-                        # print(response)
+                        instance.update_user(user_id, "resume", {"id": doc_id, "name": doc_name})
+                        string = "Thank you for applying to 7Span, our HR will contact you shortly."
+                        response = func.send_message(string, message_object['from'])
+                        print(response)
 
                     elif message_type == "text":
                         message_text = message_object['text']['body']
